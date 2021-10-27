@@ -1,6 +1,8 @@
 import * as fs from 'fs';
 import axios from 'axios';
-
+if(!fs.existsSync('dades')){
+    fs.mkdirSync('dades');
+}
 axios.get("https://query1.finance.yahoo.com/v7/finance/download/BTC-USD?period1=1603789533&period2=1635321933&interval=1d&events=history&includeAdjustedClose=true")
 .then(response=>{
     fs.writeFileSync('./dades/btc.csv',response.data.toString());
